@@ -1,0 +1,6 @@
+# Ignore sensitive and generated files
+config/postal.yml
+config/signing.key
+.env
+*.log
+tmp/
