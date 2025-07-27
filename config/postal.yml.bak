@@ -1,0 +1,40 @@
+version: 2
+
+postal:
+  web_hostname: supportdeckhub.com
+  web_protocol: https
+  smtp_hostname: supportdeckhub.com
+
+database:
+  host: "172.17.0.1"
+  port: 3306
+  username: postal
+  password: "Apple@012345"
+  database: postal
+
+message_db:
+  host: "172.17.0.1"
+  port: 3306
+  username: postal
+  password: "Apple@012345"
+  prefix: postal
+
+smtp_server:
+  default_bind_address: "::"
+
+dns:
+  mx_records:
+    - mx.supportdeckhub.com
+  spf_include: spf.supportdeckhub.com
+  return_path_domain: rp.supportdeckhub.com
+  route_domain: routes.supportdeckhub.com
+  track_domain: track.supportdeckhub.com
+
+smtp:
+  host: 127.0.0.1
+  port: 2525
+  from_name: Postal
+  from_address: supportdeckhub.com
+
+rails:
+  secret_key: <keep your existing secret_key here>

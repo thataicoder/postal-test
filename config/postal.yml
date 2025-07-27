@@ -33,9 +33,10 @@ message_db:
 
 rabbitmq:
   host: 172.17.0.1
+  port: 5672
   username: postal
   password: "Apple@012345"
-  vhost: postal
+  vhost: /postal
 
 dns:
   mx_records:
