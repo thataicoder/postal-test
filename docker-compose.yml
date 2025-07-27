@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  web:
+    image: ghcr.io/postalserver/postal:3.3.4
+    command: postal web-server --bind 0.0.0.0 --port 5000
+    network_mode: host
+    volumes:
+      - ./config:/config
+
+  worker:
+    image: ghcr.io/postalserver/postal:3.3.4
+    command: postal worker
+    network_mode: host
+    volumes:
+      - ./config:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  smtp:
+    image: ghcr.io/postalserver/postal:3.3.4
+    command: postal smtp-server
+    network_mode: host
+    volumes:
+      - ./config:/config
