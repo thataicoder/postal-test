@@ -18,25 +18,25 @@ logging:
   stdout: true
 
 main_db:
-  host: 172.17.0.1
-  port: 3306
-  username: postal
-  password: "Apple@012345"
-  database: postal
+  host: <%= ENV.fetch('POSTAL_DB_HOST', '172.17.0.1') %>
+  port: <%= ENV.fetch('POSTAL_DB_PORT', 3306) %>
+  username: <%= ENV.fetch('POSTAL_DB_USER', 'postal') %>
+  password: <%= ENV.fetch('POSTAL_DB_PASS', 'Apple@012345') %>
+  database: <%= ENV.fetch('POSTAL_DB_NAME', 'postal') %>
 
 message_db:
-  host: 172.17.0.1
-  port: 3306
-  username: postal
-  password: "Apple@012345"
-  prefix: postal
+  host: <%= ENV.fetch('POSTAL_MESSAGE_DB_HOST', ENV.fetch('POSTAL_DB_HOST', '172.17.0.1')) %>
+  port: <%= ENV.fetch('POSTAL_MESSAGE_DB_PORT', ENV.fetch('POSTAL_DB_PORT', 3306)) %>
+  username: <%= ENV.fetch('POSTAL_MESSAGE_DB_USER', ENV.fetch('POSTAL_DB_USER', 'postal')) %>
+  password: <%= ENV.fetch('POSTAL_MESSAGE_DB_PASS', ENV.fetch('POSTAL_DB_PASS', 'Apple@012345')) %>
+  prefix: <%= ENV.fetch('POSTAL_MESSAGE_DB_PREFIX', 'postal') %>
 
 rabbitmq:
-  host: 172.17.0.1
-  port: 5672
-  username: postal
-  password: "Apple@012345"
-  vhost: /postal
+  host: <%= ENV.fetch('POSTAL_RABBITMQ_HOST', '172.17.0.1') %>
+  port: <%= ENV.fetch('POSTAL_RABBITMQ_PORT', 5672) %>
+  username: <%= ENV.fetch('POSTAL_RABBITMQ_USER', 'postal') %>
+  password: <%= ENV.fetch('POSTAL_RABBITMQ_PASS', 'Apple@012345') %>
+  vhost: <%= ENV.fetch('POSTAL_RABBITMQ_VHOST', '/postal') %>
 
 dns:
   mx_records:
@@ -53,4 +53,4 @@ smtp:
   from_address: postal@supportdeckhub.com
 
 rails:
-  secret_key: 8b61319579d52f87d925f41fc7471c31ac8cb6b48156647555c5f3bf7089448fe0510c152f15de05aac9306
+  secret_key: <%= ENV.fetch('POSTAL_SECRET_KEY', 'change_me') %>
